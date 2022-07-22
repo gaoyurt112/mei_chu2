@@ -1,0 +1,142 @@
+.App {
+  height: 100vh;
+  width: 100%;
+  background: url('./assets/切片\ 1.png') no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .title {
+    width: 663px;
+    height: 100px;
+    position: absolute;
+    left: 600px;
+    top: 23px;
+    color: #fff;
+    font-size: 55px;
+    text-align: center;
+    line-height: 100px;
+    text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+      0px 0px 15px #00ffff;
+  }
+
+  .pe-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 450px;
+    left: 805px;
+    text-align: center;
+
+    .number {
+      width: 400px;
+      height: 100px;
+      font-size: 100px;
+      line-height: 100%;
+      color: #fff;
+      text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+        0px 0px 15px #00ffff;
+    }
+
+    .ren {
+      width: 100px;
+      height: 100px;
+      margin-top: 50px;
+      font-size: 50px;
+      line-height: 100%;
+      color: #fff;
+      text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+        0px 0px 15px #00ffff;
+    }
+  }
+  .selectForm {
+    width: 577px;
+    height: 113px;
+    position: absolute;
+    top: 500px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .selectForm-title {
+      position: absolute;
+      top: -24px;
+      left: 35px;
+      color: #fff;
+      font-size: 25px;
+      text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+        0px 0px 15px #00ffff;
+    }
+    .select-title {
+      color: #fff;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: 25px;
+      text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+        0px 0px 15px #00ffff;
+    }
+    .semi-select {
+      border: 1px solid #fff;
+      color: #fff;
+    }
+    .semi-select-selection-placeholder {
+      color: #fff;
+    }
+    .semi-select-arrow {
+      color: #fff;
+    }
+    .semi-select-selection-text {
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+  .pe-status {
+    width: 534px;
+    height: 399px;
+    position: absolute;
+    top: 355px;
+    left: 1360px;
+    .pe-status-title {
+      font-size: 25px;
+      position: absolute;
+      top: 6px;
+      left: 17px;
+      color: #fff;
+      text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
+        0px 0px 15px #00ffff;
+    }
+    .progress {
+      width: 534px;
+      height: 400px;
+      position: absolute;
+      // left: 50%;
+      // margin-left: -100px;
+      // top: 50%;
+      // margin-top: -100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .status-text {
+      font-size: 30px;
+      color: orange;
+      font-weight: 700;
+      position: absolute;
+      text-shadow: 0px 0px 20px #ffaa00, 0px 0px 20px #ffaa00,
+        0px 0px 20px #ffaa00;
+    }
+  }
+  .logo {
+    width: 155px;
+    height: 110px;
+    bottom: 8px;
+    left: 50%;
+    margin-left: -70px;
+    position: absolute;
+    background: url(./assets/5e3WJVVev8.png) no-repeat;
+    background-size: cover;
+  }
+}
