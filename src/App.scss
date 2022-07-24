@@ -63,7 +63,7 @@
     align-items: center;
     .selectForm-title {
       position: absolute;
-      top: -24px;
+      top: -20px;
       left: 35px;
       color: #fff;
       font-size: 25px;
@@ -102,7 +102,7 @@
     .pe-status-title {
       font-size: 25px;
       position: absolute;
-      top: 6px;
+      top: 15px;
       left: 17px;
       color: #fff;
       text-shadow: 0px 0px 15px #00ffff, 0px 0px 15px #00ffff,
@@ -120,13 +120,27 @@
       align-items: center;
       justify-content: center;
     }
-    .status-text {
+    .status-text-success {
       font-size: 30px;
-      color: orange;
+      color: green;
+      font-weight: 700;
+      position: absolute;
+      text-shadow: 0px 0px 20px green, 0px 0px 20px green, 0px 0px 20px green;
+    }
+    .status-text-waring {
+      font-size: 30px;
+      color: #ffaa00;
       font-weight: 700;
       position: absolute;
       text-shadow: 0px 0px 20px #ffaa00, 0px 0px 20px #ffaa00,
         0px 0px 20px #ffaa00;
+    }
+    .status-text-danger {
+      font-size: 30px;
+      color: red;
+      font-weight: 700;
+      position: absolute;
+      text-shadow: 0px 0px 20px red, 0px 0px 20px red, 0px 0px 20px red;
     }
   }
   .logo {

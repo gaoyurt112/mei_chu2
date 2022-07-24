@@ -4,55 +4,35 @@ import { useEffect, useState } from 'react'
 import { http } from './utils/http'
 
 function App () {
+
   //设置请求地址
   const [reqAddress, setReqAddress] = useState('')
   //设置人数
   const [number, setNumber] = useState(0)
 
-  // 获取实时人数的方法
-  const getNumber = async function (value) {
-    const res = await http.get(`/${value}`)
-    setNumber(res.data.number)
-  }
+  useEffect(() => {
+    // 获取实时人数的方法
+    const getNumber = async function () {
+      const res = await http.get(`/${reqAddress}`)
+      setNumber(res.data.number)
+    }
+    //当数据存在开启轮询
+    if (reqAddress) {
+      var timer = setInterval(() => {
+        getNumber()
+      }, 3000)
+    }
+
+    //清除上一个useEffect实现切换管理处清除定时器
+    return () => {
+      clearInterval(timer)
+    }
+  }, [reqAddress])
 
 
-
-  // useEffect(() => {
-  //   //当数据存在开启轮询
-  //   if (reqAddress) {
-  //     timer()
-  //   }
-  // }, [reqAddress])
-
-  var timerfUN = function () {
-    console.log('11')
-  }
-
-  var timer = window.setInterval(() => {
-    // getNumber('yyy')
-    console.log('1111')
-  }, 5000)
   //切换选择框的回调
   const onSelect = (value) => {
-    // console.log(value)
-    // debugger
     setReqAddress(value)
-
-    // if (timer) {
-    //   window.clearInterval(timer)
-    //   timer = false
-    //   console.log(timer, '111')
-    // } else {
-    //   //创建定时器
-    //   var timer = window.setInterval(() => {
-    //     getNumber(value)
-    //   }, 5000)
-    //   console.log(timer, '221')
-    // }
-
-    window.clearInterval(timer)
-
-
   }
 
   // 获取管理处信息
@@ -60,13 +40,72 @@ function App () {
   useEffect(() => {
     async function getAddress () {
       const res = await http.get('/address')
-      console.log(res)
+      // console.log(res)
       setAddress(res.data)
     }
     getAddress()
   }, [])
 
   const list = address.map(item => ({ value: item.value, label: item.address }))
+
+  //百分比进度条计算
+  //设置仓库存储基准值
+  const baseNumber = 450 //测试数据，实际从后台获取
+  const percent = (number / baseNumber) * 100
+
+  //进度条颜色变化
+  const progressColor = () => {
+    if (percent < 50) {
+      return "var(--semi-color-success)"
+    } else if (percent >= 50 && percent <= 75) {
+      return "var(--semi-color-warning)"
+    } else if (percent > 75) {
+      return "var(--semi-color-danger)"
+    }
+  }
+
+  const [progressText, setProgressText] = useState('空闲')
+
+  //文字颜色变化
+
+  const [TextclassName, setTextclassName] = useState('status-text-success')
+
+  const className = () => {
+    if (percent < 50) {
+      setTextclassName('status-text-success')
+    } else if (percent >= 50 && percent <= 75) {
+      setTextclassName('status-text-waring')
+    } else if (percent > 75) {
+      setTextclassName('status-text-danger')
+    }
+  }
+
+  //文字变化
+  const changeText = () => {
+    if (percent < 50) {
+      setProgressText('空闲')
+    } else if (percent >= 50 && percent <= 75) {
+      setProgressText('较多')
+    } else if (percent > 75) {
+      setProgressText('拥挤')
+    }
+  }
+
+
+
+
+  useEffect(() => {
+    progressColor()
+    changeText()
+    className()
+  }, [percent])
+
+
+
+
+
+
+
 
   return (
     <div className="App">
@@ -91,15 +130,15 @@ function App () {
           <div className='pe-status-title'>
             当前承载状态
           </div>
-          <div className='progress'>
-            <div className='status-text'>较多</div>
+          <div className='progress' >
+            <div className={TextclassName}>{progressText}</div>
             <Progress
-              percent={66}
+              percent={percent}
               type="circle"
               width={200}
               strokeWidth={8}
               style={{ margin: 5 }}
-              stroke="var(--semi-color-warning)"
+              stroke={progressColor()}
               // var(--semi-color-danger) 红
               //var(--semi-color-success) 绿
               aria-label="disk usage"
